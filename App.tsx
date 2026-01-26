@@ -109,6 +109,10 @@ const App: React.FC = () => {
     setFoodItems(foodItems.map(item => item.id === id ? { ...item, name } : item));
   };
 
+  const deleteFoodItem = (id: string) => {
+    setFoodItems((currentItems) => currentItems.filter(item => item.id !== id));
+  };
+
   const formatDate = (date: Date) => {
     return date.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
   };
@@ -208,6 +212,7 @@ const App: React.FC = () => {
           items={foodItems}
           addItem={addFoodItem}
           updateItem={updateFoodItem}
+          deleteItem={deleteFoodItem}
           onOpenSearch={() => setIsFoodSearchOpen(true)}
         />
       </main>

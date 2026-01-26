@@ -5,10 +5,11 @@ interface FoodDetailsSectionProps {
   items: FoodItem[];
   addItem: (name: string) => void;
   updateItem: (id: string, name: string) => void;
+  deleteItem: (id: string) => void;
   onOpenSearch: () => void;
 }
 
-const FoodDetailsSection: React.FC<FoodDetailsSectionProps> = ({ items, addItem, updateItem, onOpenSearch }) => {
+const FoodDetailsSection: React.FC<FoodDetailsSectionProps> = ({ items, addItem, updateItem, deleteItem, onOpenSearch }) => {
   const [suggestions, setSuggestions] = useState(["Lemon Dressing", "Feta Cheese", "Avocado"]);
   const [editId, setEditId] = useState<string | null>(null);
   const [editValue, setEditValue] = useState("");
@@ -33,6 +34,14 @@ const FoodDetailsSection: React.FC<FoodDetailsSectionProps> = ({ items, addItem,
           updateItem(id, editValue);
       }
       setEditId(null);
+  };
+
+  const handleDeleteItem = (id: string) => {
+    deleteItem(id);
+    if (editId === id) {
+      setEditId(null);
+      setEditValue("");
+    }
   };
 
   return (
@@ -79,12 +88,20 @@ const FoodDetailsSection: React.FC<FoodDetailsSectionProps> = ({ items, addItem,
                 <span>{item.time}</span>
               </div>
             </div>
-            <button 
-                onClick={() => editId === item.id ? handleSaveEdit(item.id) : handleStartEdit(item)}
-                className="h-8 w-8 flex-shrink-0 flex items-center justify-center rounded-full hover:bg-white/5 text-gray-400 hover:text-white transition-colors"
-            >
-              <span className="material-symbols-outlined text-lg">{editId === item.id ? 'check' : 'edit'}</span>
-            </button>
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <button 
+                  onClick={() => editId === item.id ? handleSaveEdit(item.id) : handleStartEdit(item)}
+                  className="h-8 w-8 flex items-center justify-center rounded-full hover:bg-white/5 text-gray-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20"
+              >
+                <span className="material-symbols-outlined text-lg">{editId === item.id ? 'check' : 'edit'}</span>
+              </button>
+              <button
+                onClick={() => handleDeleteItem(item.id)}
+                className="h-8 w-8 flex items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-red-500/10 hover:text-red-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400/40"
+              >
+                <span className="material-symbols-outlined text-lg">delete</span>
+              </button>
+            </div>
           </div>
         ))}
       </div>
