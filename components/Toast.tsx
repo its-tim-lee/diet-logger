@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Icon } from '@iconify/react';
+import React, { useEffect, useState } from "react";
+import { Icon } from "@iconify/react";
 
 interface ToastProps {
   message: string | null;
@@ -23,9 +23,9 @@ const Toast: React.FC<ToastProps> = ({ message, onClose }) => {
   if (!message) return null;
 
   return (
-    <div 
+    <div
       className={`fixed bottom-24 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       }`}
     >
       <div className="bg-[#1f2e18] border border-primary/30 text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2">

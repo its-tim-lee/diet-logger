@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Icon } from '@iconify/react';
-import VoiceWaveform from './VoiceWaveform';
+import React, { useState, useEffect } from "react";
+import { Icon } from "@iconify/react";
+import VoiceWaveform from "./VoiceWaveform";
 
 interface DailyNotesSectionProps {
   enabled: boolean;
@@ -13,44 +13,68 @@ const DailyNotesSection: React.FC<DailyNotesSectionProps> = ({
   enabled,
   setEnabled,
   notes,
-  setNotes
+  setNotes,
 }) => {
   const [isRecording, setIsRecording] = useState(false);
 
   const toggleRecording = () => {
     if (!enabled) return;
     if (isRecording) {
-        setIsRecording(false);
-        // Simulate speech-to-text conversion
-        setNotes((prev) => (prev ? prev + "\n" : "") + "Had a really productive day today. Felt energized after the workout.");
+      setIsRecording(false);
+      // Simulate speech-to-text conversion
+      setNotes(
+        (prev) =>
+          (prev ? prev + "\n" : "") +
+          "Had a really productive day today. Felt energized after the workout."
+      );
     } else {
-        setIsRecording(true);
-        if (navigator.vibrate) {
-            navigator.vibrate(50);
-        }
+      setIsRecording(true);
+      if (navigator.vibrate) {
+        navigator.vibrate(50);
+      }
     }
-  }
+  };
 
   // Simulate stopping automatically after 3 seconds for demo purposes
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>;
     if (isRecording) {
-        timeout = setTimeout(() => {
-            setIsRecording(false);
-            setNotes((prev) => (prev ? prev + "\n" : "") + "Had a really productive day today. Felt energized after the workout.");
-        }, 3000);
+      timeout = setTimeout(() => {
+        setIsRecording(false);
+        setNotes(
+          (prev) =>
+            (prev ? prev + "\n" : "") +
+            "Had a really productive day today. Felt energized after the workout."
+        );
+      }, 3000);
     }
     return () => clearTimeout(timeout);
   }, [isRecording, setNotes]);
 
   return (
-    <section className={`bg-white dark:bg-card-dark rounded-xl p-5 shadow-sm space-y-4 group transition-opacity ${enabled ? 'opacity-100' : 'opacity-80'}`}>
+    <section
+      className={`bg-white dark:bg-card-dark rounded-xl p-5 shadow-sm space-y-4 group transition-opacity ${
+        enabled ? "opacity-100" : "opacity-80"
+      }`}
+    >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className={`p-2 rounded-full transition-colors ${enabled ? 'bg-primary/20 text-primary' : 'bg-gray-700 text-gray-400'}`}>
+          <div
+            className={`p-2 rounded-full transition-colors ${
+              enabled
+                ? "bg-primary/20 text-primary"
+                : "bg-gray-700 text-gray-400"
+            }`}
+          >
             <Icon icon="material-symbols:edit-note" />
           </div>
-          <h3 className={`text-lg font-bold transition-colors ${enabled ? 'text-white' : 'text-gray-500'}`}>Daily Notes</h3>
+          <h3
+            className={`text-lg font-bold transition-colors ${
+              enabled ? "text-white" : "text-gray-500"
+            }`}
+          >
+            Daily Notes
+          </h3>
         </div>
         <label className="inline-flex items-center cursor-pointer">
           <input
@@ -62,10 +86,10 @@ const DailyNotesSection: React.FC<DailyNotesSectionProps> = ({
           <div className="relative w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
         </label>
       </div>
-      
-      <div 
+
+      <div
         className={`relative transition-all duration-300 ease-in-out ${
-            enabled ? 'pointer-events-auto' : 'pointer-events-none grayscale'
+          enabled ? "pointer-events-auto" : "pointer-events-none grayscale"
         }`}
       >
         <textarea
@@ -75,9 +99,11 @@ const DailyNotesSection: React.FC<DailyNotesSectionProps> = ({
           onChange={(e) => setNotes(e.target.value)}
           disabled={!enabled}
         />
-        <button 
+        <button
           className={`absolute top-3 right-3 h-10 w-10 flex items-center justify-center rounded-full transition-all duration-300 group ${
-            isRecording ? 'bg-primary text-background-dark' : 'bg-input-bg border border-gray-600 hover:border-primary text-gray-400 hover:text-primary'
+            isRecording
+              ? "bg-primary text-background-dark"
+              : "bg-input-bg border border-gray-600 hover:border-primary text-gray-400 hover:text-primary"
           }`}
           onClick={toggleRecording}
           disabled={!enabled}

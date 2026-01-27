@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Icon } from '@iconify/react';
-import { ExerciseType } from '../types';
-import TimePickerModal from './TimePickerModal';
+import React, { useState } from "react";
+import { Icon } from "@iconify/react";
+import { ExerciseType } from "../types";
+import TimePickerModal from "./TimePickerModal";
 
 interface ExerciseSectionProps {
   enabled: boolean;
@@ -22,18 +22,18 @@ const ExerciseSection: React.FC<ExerciseSectionProps> = ({
   duration,
   setDuration,
   startTime,
-  setStartTime
+  setStartTime,
 }) => {
   const types = [ExerciseType.CARDIO, ExerciseType.WORKOUT, ExerciseType.YOGA];
   const [isAddingCustom, setIsAddingCustom] = useState(false);
-  const [customType, setCustomType] = useState('');
+  const [customType, setCustomType] = useState("");
   const [isTimePickerOpen, setIsTimePickerOpen] = useState(false);
 
   const handleCustomSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (customType.trim()) {
-        setType(customType);
-        setIsAddingCustom(false);
+      setType(customType);
+      setIsAddingCustom(false);
     }
   };
 
@@ -43,7 +43,10 @@ const ExerciseSection: React.FC<ExerciseSectionProps> = ({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-full bg-primary/20 text-primary">
-              <Icon icon="material-symbols:fitness-center" className="text-2xl" />
+              <Icon
+                icon="material-symbols:fitness-center"
+                className="text-2xl"
+              />
             </div>
             <h3 className="text-lg font-bold">Exercise</h3>
           </div>
@@ -78,34 +81,41 @@ const ExerciseSection: React.FC<ExerciseSectionProps> = ({
                     {t}
                   </button>
                 ))}
-                
-                {!types.includes(type as ExerciseType) && type !== '' && !isAddingCustom && (
+
+                {!types.includes(type as ExerciseType) &&
+                  type !== "" &&
+                  !isAddingCustom && (
                     <button
                       onClick={() => setIsAddingCustom(true)}
                       className="flex-shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-all border bg-primary text-background-dark shadow-[0_0_10px_rgba(91,236,19,0.3)] border-primary"
                     >
                       {type}
                     </button>
-                )}
+                  )}
 
                 {isAddingCustom ? (
-                    <form onSubmit={handleCustomSubmit} className="flex-shrink-0">
-                        <input 
-                          autoFocus
-                          type="text" 
-                          value={customType} 
-                          onChange={(e) => setCustomType(e.target.value)}
-                          onBlur={() => { if(!customType) setIsAddingCustom(false); }}
-                          className="bg-input-bg text-white border border-primary rounded-full px-4 py-1.5 text-sm focus:ring-0 w-28"
-                          placeholder="Activity..."
-                        />
-                    </form>
+                  <form onSubmit={handleCustomSubmit} className="flex-shrink-0">
+                    <input
+                      autoFocus
+                      type="text"
+                      value={customType}
+                      onChange={(e) => setCustomType(e.target.value)}
+                      onBlur={() => {
+                        if (!customType) setIsAddingCustom(false);
+                      }}
+                      className="bg-input-bg text-white border border-primary rounded-full px-4 py-1.5 text-sm focus:ring-0 w-28"
+                      placeholder="Activity..."
+                    />
+                  </form>
                 ) : (
-                  <button 
-                      onClick={() => setIsAddingCustom(true)}
-                      className="flex-shrink-0 h-9 w-9 flex items-center justify-center rounded-full transition-all bg-input-bg text-gray-400 border border-transparent hover:border-primary/30 hover:text-white group"
+                  <button
+                    onClick={() => setIsAddingCustom(true)}
+                    className="flex-shrink-0 h-9 w-9 flex items-center justify-center rounded-full transition-all bg-input-bg text-gray-400 border border-transparent hover:border-primary/30 hover:text-white group"
                   >
-                      <Icon icon="material-symbols:add" className="text-xl group-hover:text-primary transition-colors" />
+                    <Icon
+                      icon="material-symbols:add"
+                      className="text-xl group-hover:text-primary transition-colors"
+                    />
                   </button>
                 )}
               </div>
@@ -139,7 +149,10 @@ const ExerciseSection: React.FC<ExerciseSectionProps> = ({
                   onClick={() => setIsTimePickerOpen(true)}
                   className="bg-input-bg rounded-full h-12 flex items-center px-4 w-full relative group hover:ring-1 ring-primary/50 transition-all"
                 >
-                  <Icon icon="material-symbols:schedule" className="text-gray-400 mr-2 text-sm" />
+                  <Icon
+                    icon="material-symbols:schedule"
+                    className="text-gray-400 mr-2 text-sm"
+                  />
                   <span className="text-white font-bold text-sm flex-grow text-left">
                     {startTime}
                   </span>

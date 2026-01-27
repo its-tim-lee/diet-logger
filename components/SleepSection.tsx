@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { Icon } from '@iconify/react';
-import TimePickerModal from './TimePickerModal';
+import React, { useRef, useEffect, useState } from "react";
+import { Icon } from "@iconify/react";
+import TimePickerModal from "./TimePickerModal";
 
 interface SleepSectionProps {
   quality: number;
@@ -21,16 +21,17 @@ const SleepSection: React.FC<SleepSectionProps> = ({
   wakeTime,
   setWakeTime,
   notes,
-  setNotes
+  setNotes,
 }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [pickerOpen, setPickerOpen] = useState<'bed' | 'wake' | null>(null);
+  const [pickerOpen, setPickerOpen] = useState<"bed" | "wake" | null>(null);
 
   // Auto-resize textarea
   useEffect(() => {
     if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto';
-      textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
+      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height =
+        textareaRef.current.scrollHeight + "px";
     }
   }, [notes]);
 
@@ -48,7 +49,7 @@ const SleepSection: React.FC<SleepSectionProps> = ({
           </div>
           <h3 className="text-lg font-bold">Sleep Quality</h3>
         </div>
-        
+
         <div className="flex flex-col gap-2">
           <label className="text-xs uppercase tracking-wider font-bold text-gray-500 dark:text-gray-400">
             How did you sleep?
@@ -61,11 +62,13 @@ const SleepSection: React.FC<SleepSectionProps> = ({
                 className="p-2 hover:bg-white/10 rounded-full transition-colors group"
               >
                 <Icon
-                  icon={star <= quality ? "material-symbols:star" : "material-symbols:star-outline"}
+                  icon={
+                    star <= quality
+                      ? "material-symbols:star"
+                      : "material-symbols:star-outline"
+                  }
                   className={`text-[28px] transition-colors ${
-                    star <= quality 
-                      ? "text-primary" 
-                      : "text-gray-600"
+                    star <= quality ? "text-primary" : "text-gray-600"
                   }`}
                 />
               </button>
@@ -78,8 +81,8 @@ const SleepSection: React.FC<SleepSectionProps> = ({
             <label className="text-xs uppercase tracking-wider font-bold text-gray-500 dark:text-gray-400">
               Bed Time
             </label>
-            <button 
-              onClick={() => setPickerOpen('bed')}
+            <button
+              onClick={() => setPickerOpen("bed")}
               className="bg-input-bg rounded-full h-12 flex items-center px-4 relative group hover:ring-1 ring-primary/50 transition-all text-white font-bold text-sm"
             >
               {bedTime}
@@ -89,8 +92,8 @@ const SleepSection: React.FC<SleepSectionProps> = ({
             <label className="text-xs uppercase tracking-wider font-bold text-gray-500 dark:text-gray-400">
               Wake Time
             </label>
-            <button 
-              onClick={() => setPickerOpen('wake')}
+            <button
+              onClick={() => setPickerOpen("wake")}
               className="bg-input-bg rounded-full h-12 flex items-center px-4 relative group hover:ring-1 ring-primary/50 transition-all text-white font-bold text-sm"
             >
               {wakeTime}
@@ -112,15 +115,15 @@ const SleepSection: React.FC<SleepSectionProps> = ({
         </div>
       </section>
 
-      <TimePickerModal 
-        isOpen={pickerOpen === 'bed'} 
+      <TimePickerModal
+        isOpen={pickerOpen === "bed"}
         onClose={() => setPickerOpen(null)}
         initialTime={bedTime}
         onSelectTime={setBedTime}
         title="Set Bed Time"
       />
-      <TimePickerModal 
-        isOpen={pickerOpen === 'wake'} 
+      <TimePickerModal
+        isOpen={pickerOpen === "wake"}
         onClose={() => setPickerOpen(null)}
         initialTime={wakeTime}
         onSelectTime={setWakeTime}

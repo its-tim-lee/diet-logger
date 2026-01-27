@@ -1,24 +1,39 @@
-import React from 'react';
-import { Icon } from '@iconify/react';
-import { PressureLevel } from '../types';
+import React from "react";
+import { Icon } from "@iconify/react";
+import { PressureLevel } from "../types";
 
 interface PressureSectionProps {
   level: PressureLevel;
   setLevel: (val: PressureLevel) => void;
 }
 
-const PressureSection: React.FC<PressureSectionProps> = ({ level, setLevel }) => {
+const PressureSection: React.FC<PressureSectionProps> = ({
+  level,
+  setLevel,
+}) => {
   const levels = [
-    { value: PressureLevel.LOW, icon: 'sentiment_very_satisfied', label: 'Low' },
-    { value: PressureLevel.LOW_MID, icon: 'sentiment_satisfied', label: '.' },
-    { value: PressureLevel.MID, icon: 'sentiment_neutral', label: '.' },
-    { value: PressureLevel.HIGH_MID, icon: 'sentiment_dissatisfied', label: '.' },
-    { value: PressureLevel.HIGH, icon: 'sentiment_very_dissatisfied', label: 'High' },
+    {
+      value: PressureLevel.LOW,
+      icon: "sentiment_very_satisfied",
+      label: "Low",
+    },
+    { value: PressureLevel.LOW_MID, icon: "sentiment_satisfied", label: "." },
+    { value: PressureLevel.MID, icon: "sentiment_neutral", label: "." },
+    {
+      value: PressureLevel.HIGH_MID,
+      icon: "sentiment_dissatisfied",
+      label: ".",
+    },
+    {
+      value: PressureLevel.HIGH,
+      icon: "sentiment_very_dissatisfied",
+      label: "High",
+    },
   ];
 
   const handleSelect = (val: PressureLevel) => {
     if (navigator.vibrate) {
-        navigator.vibrate(10);
+      navigator.vibrate(10);
     }
     setLevel(val);
   };
@@ -33,38 +48,38 @@ const PressureSection: React.FC<PressureSectionProps> = ({ level, setLevel }) =>
       </div>
       <div className="flex justify-between items-center gap-2">
         {levels.map((l) => {
-           const isSelected = level === l.value;
-           return (
+          const isSelected = level === l.value;
+          return (
             <div
-                key={l.value}
-                className="flex flex-col items-center gap-1 cursor-pointer group"
-                onClick={() => handleSelect(l.value)}
+              key={l.value}
+              className="flex flex-col items-center gap-1 cursor-pointer group"
+              onClick={() => handleSelect(l.value)}
             >
-                <div
+              <div
                 className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ease-out ${
-                    isSelected
+                  isSelected
                     ? "bg-primary/20 scale-125"
                     : "bg-input-bg group-hover:bg-primary/10 opacity-50 scale-100"
                 }`}
-                >
+              >
                 <Icon
-                    icon={`material-symbols:${l.icon.replace(/_/g, '-')}`}
-                    className={`text-2xl transition-colors ${
+                  icon={`material-symbols:${l.icon.replace(/_/g, "-")}`}
+                  className={`text-2xl transition-colors ${
                     isSelected
-                        ? "text-primary"
-                        : "text-gray-400 group-hover:text-primary"
-                    }`}
+                      ? "text-primary"
+                      : "text-gray-400 group-hover:text-primary"
+                  }`}
                 />
-                </div>
-                <span
+              </div>
+              <span
                 className={`text-[10px] font-bold transition-opacity ${
-                    l.label === '.' ? "text-transparent" : "text-gray-500"
+                  l.label === "." ? "text-transparent" : "text-gray-500"
                 }`}
-                >
+              >
                 {l.label}
-                </span>
+              </span>
             </div>
-           );
+          );
         })}
       </div>
     </section>
