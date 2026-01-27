@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Font Face Declarations */
 @font-face {
   font-family: "Plus Jakarta Sans";
@@ -5,4 +9,63 @@
   font-style: normal;
   font-display: swap;
   src: url("./fonts/PlusJakartaSans.woff2") format("woff2");
+}
+
+/* Custom scrollbar hiding */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Range Input Styling */
+input[type=range] {
+  -webkit-appearance: none;
+  background: transparent;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: #5bec13;
+  margin-top: -10px;
+  box-shadow: 0 0 10px rgba(91, 236, 19, 0.5);
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background: #2a3d21;
+  border-radius: 2px;
+}
+
+/* Time Input Styling */
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+body {
+  min-height: 100vh;
+  overscroll-behavior-y: none;
+}
+
+/* Shimmer Effect Class */
+.shimmer-effect {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
 }
