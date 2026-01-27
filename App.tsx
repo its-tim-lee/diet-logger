@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Icon } from '@iconify/react';
 import SleepSection from './components/SleepSection';
 import ExerciseSection from './components/ExerciseSection';
 import PressureSection from './components/PressureSection';
@@ -160,7 +161,7 @@ const App: React.FC = () => {
             onClick={() => setIsDatePickerOpen(true)}
             className="h-10 w-10 rounded-full bg-input-bg flex items-center justify-center transition-colors hover:bg-primary/20 hover:text-primary group"
           >
-            <span className="material-symbols-outlined text-primary text-xl">calendar_today</span>
+            <Icon icon="material-symbols:calendar-today" className="text-primary text-xl" />
           </button>
         </div>
 
@@ -228,7 +229,7 @@ const App: React.FC = () => {
             }`}
         >
           Proceed to Review
-          <span className="material-symbols-outlined">arrow_forward</span>
+          <Icon icon="material-symbols:arrow-forward" className="inline" />
         </button>
       </div>
 

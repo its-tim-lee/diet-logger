@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Icon } from '@iconify/react';
 
 interface ToastProps {
   message: string | null;
@@ -28,7 +29,7 @@ const Toast: React.FC<ToastProps> = ({ message, onClose }) => {
       }`}
     >
       <div className="bg-[#1f2e18] border border-primary/30 text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2">
-        <span className="material-symbols-outlined text-primary">check_circle</span>
+        <Icon icon="material-symbols:check-circle" className="text-primary" />
         <span className="font-medium text-sm">{message}</span>
       </div>
     </div>

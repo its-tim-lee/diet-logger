@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Icon } from '@iconify/react';
 import { FoodPhoto } from '../types';
 
 interface FoodPhotosSectionProps {
@@ -50,7 +51,7 @@ const FoodPhotosSection: React.FC<FoodPhotosSectionProps> = ({ photos, onEnhance
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-full bg-primary/20 text-primary">
-            <span className="material-symbols-outlined">restaurant</span>
+            <Icon icon="material-symbols:restaurant" />
           </div>
           <div className="flex items-baseline gap-2">
             <h3 className="text-lg font-bold">Food Photos</h3>
@@ -61,7 +62,7 @@ const FoodPhotosSection: React.FC<FoodPhotosSectionProps> = ({ photos, onEnhance
           onClick={handleAddPhoto}
           className="flex items-center justify-center h-8 w-8 rounded-full bg-input-bg hover:bg-primary/20 text-gray-400 hover:text-primary transition-colors"
         >
-          <span className="material-symbols-outlined text-xl">add_a_photo</span>
+          <Icon icon="material-symbols:add-a-photo" className="text-xl" />
         </button>
         <input 
             type="file" 
@@ -95,11 +96,11 @@ const FoodPhotosSection: React.FC<FoodPhotosSectionProps> = ({ photos, onEnhance
             <div className="absolute top-2 right-2">
               {photo.selected ? (
                 <button className="h-7 w-7 rounded-full bg-primary text-background-dark flex items-center justify-center shadow-lg transition-transform hover:scale-110">
-                  <span className="material-symbols-outlined text-lg font-bold">check</span>
+                  <Icon icon="material-symbols:check" className="text-lg font-bold" />
                 </button>
               ) : (
                 <button className="h-7 w-7 rounded-full bg-black/40 text-white flex items-center justify-center backdrop-blur-sm border border-white/20 transition-transform hover:scale-110">
-                  <span className="material-symbols-outlined text-lg">add</span>
+                  <Icon icon="material-symbols:add" className="text-lg" />
                 </button>
               )}
             </div>
@@ -109,7 +110,7 @@ const FoodPhotosSection: React.FC<FoodPhotosSectionProps> = ({ photos, onEnhance
                 className={`absolute bottom-2 right-2 flex items-center gap-1 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full text-[10px] font-bold text-white border border-white/10 ${
                 photo.selected ? 'hover:bg-black/80' : ''
             } transition-colors z-10 active:scale-95`}>
-              <span className="material-symbols-outlined text-primary text-xs">auto_fix_high</span>
+              <Icon icon="material-symbols:auto-fix-high" className="text-primary text-xs" />
               Re-enhance
             </button>
           </div>

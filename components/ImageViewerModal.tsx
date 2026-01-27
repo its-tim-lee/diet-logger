@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Icon } from '@iconify/react';
 
 interface ImageViewerModalProps {
   isOpen: boolean;
@@ -30,7 +31,7 @@ const ImageViewerModal: React.FC<ImageViewerModalProps> = ({ isOpen, onClose, im
         className="absolute top-4 right-4 h-10 w-10 rounded-full bg-white/10 text-white flex items-center justify-center backdrop-blur-md z-10"
         onClick={onClose}
       >
-        <span className="material-symbols-outlined">close</span>
+        <Icon icon="material-symbols:close" />
       </button>
       
       <img 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Icon } from '@iconify/react';
 
 interface FoodSearchModalProps {
   isOpen: boolean;
@@ -44,7 +45,7 @@ const FoodSearchModal: React.FC<FoodSearchModalProps> = ({ isOpen, onClose, onAd
         <h3 className="text-xl font-bold text-white text-center">Add Food Item</h3>
 
         <div className="bg-input-bg rounded-xl flex items-center px-4 h-12 border border-transparent focus-within:border-primary/50 transition-colors">
-          <span className="material-symbols-outlined text-gray-400 mr-2">search</span>
+          <Icon icon="material-symbols:search" className="text-gray-400 mr-2" />
           <input 
             className="bg-transparent border-none text-white w-full focus:ring-0 p-0 text-sm placeholder-gray-500"
             placeholder="Search food..."
@@ -62,7 +63,7 @@ const FoodSearchModal: React.FC<FoodSearchModalProps> = ({ isOpen, onClose, onAd
               className="flex items-center justify-between p-4 rounded-xl bg-white/5 hover:bg-white/10 text-white transition-colors group"
             >
               <span className="font-medium">{food}</span>
-              <span className="material-symbols-outlined text-gray-500 group-hover:text-primary transition-colors">add_circle</span>
+              <Icon icon="material-symbols:add-circle" className="text-gray-500 group-hover:text-primary transition-colors" />
             </button>
           ))}
           {filtered.length === 0 && searchTerm && (
@@ -71,7 +72,7 @@ const FoodSearchModal: React.FC<FoodSearchModalProps> = ({ isOpen, onClose, onAd
                 className="flex items-center justify-between p-4 rounded-xl bg-primary/10 hover:bg-primary/20 text-primary transition-colors border border-primary/20"
             >
                 <span className="font-medium">Add "{searchTerm}"</span>
-                <span className="material-symbols-outlined">add</span>
+                <Icon icon="material-symbols:add" />
             </button>
           )}
         </div>

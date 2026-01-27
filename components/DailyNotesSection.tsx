@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Icon } from '@iconify/react';
 import VoiceWaveform from './VoiceWaveform';
 
 interface DailyNotesSectionProps {
@@ -47,7 +48,7 @@ const DailyNotesSection: React.FC<DailyNotesSectionProps> = ({
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className={`p-2 rounded-full transition-colors ${enabled ? 'bg-primary/20 text-primary' : 'bg-gray-700 text-gray-400'}`}>
-            <span className="material-symbols-outlined">edit_note</span>
+            <Icon icon="material-symbols:edit-note" />
           </div>
           <h3 className={`text-lg font-bold transition-colors ${enabled ? 'text-white' : 'text-gray-500'}`}>Daily Notes</h3>
         </div>
@@ -84,7 +85,7 @@ const DailyNotesSection: React.FC<DailyNotesSectionProps> = ({
           {isRecording ? (
             <VoiceWaveform />
           ) : (
-            <span className="material-symbols-outlined text-[20px]">mic</span>
+            <Icon icon="material-symbols:mic" className="text-[20px]" />
           )}
         </button>
       </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Icon } from '@iconify/react';
 import { FoodItem } from '../types';
 
 interface FoodDetailsSectionProps {
@@ -49,7 +50,7 @@ const FoodDetailsSection: React.FC<FoodDetailsSectionProps> = ({ items, addItem,
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-full bg-primary/20 text-primary">
-            <span className="material-symbols-outlined">menu_book</span>
+            <Icon icon="material-symbols:menu-book" />
           </div>
           <h3 className="text-lg font-bold">Food Details</h3>
         </div>
@@ -57,7 +58,7 @@ const FoodDetailsSection: React.FC<FoodDetailsSectionProps> = ({ items, addItem,
           className="flex items-center justify-center h-8 w-8 rounded-full bg-input-bg hover:bg-primary/20 text-gray-400 hover:text-primary transition-colors"
           onClick={onOpenSearch}
         >
-          <span className="material-symbols-outlined text-xl">add</span>
+          <Icon icon="material-symbols:add" className="text-xl" />
         </button>
       </div>
 
@@ -93,13 +94,13 @@ const FoodDetailsSection: React.FC<FoodDetailsSectionProps> = ({ items, addItem,
                   onClick={() => editId === item.id ? handleSaveEdit(item.id) : handleStartEdit(item)}
                   className="h-8 w-8 flex items-center justify-center rounded-full hover:bg-white/5 text-gray-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20"
               >
-                <span className="material-symbols-outlined text-lg">{editId === item.id ? 'check' : 'edit'}</span>
+                <Icon icon={editId === item.id ? "material-symbols:check" : "material-symbols:edit"} className="text-lg" />
               </button>
               <button
                 onClick={() => handleDeleteItem(item.id)}
                 className="h-8 w-8 flex items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-red-500/10 hover:text-red-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400/40"
               >
-                <span className="material-symbols-outlined text-lg">delete</span>
+                <Icon icon="material-symbols:delete" className="text-lg" />
               </button>
             </div>
           </div>
@@ -108,7 +109,7 @@ const FoodDetailsSection: React.FC<FoodDetailsSectionProps> = ({ items, addItem,
 
       <div className="pt-1">
         <div className="flex items-center gap-2 mb-3">
-          <span className="material-symbols-outlined text-primary text-sm animate-pulse">auto_awesome</span>
+          <Icon icon="material-symbols:auto-awesome" className="text-primary text-sm animate-pulse" />
           <span className="text-xs font-bold text-gray-400 uppercase tracking-wide">AI Suggestions based on photo</span>
         </div>
         <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1 min-h-[40px]">
@@ -120,7 +121,7 @@ const FoodDetailsSection: React.FC<FoodDetailsSectionProps> = ({ items, addItem,
                   removedChip === s ? 'animate-fade-out' : ''
               }`}
             >
-              <span className="material-symbols-outlined text-sm">add</span>
+              <Icon icon="material-symbols:add" className="text-sm" />
               {s}
             </button>
           ))}

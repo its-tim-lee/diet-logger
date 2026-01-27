@@ -1,4 +1,5 @@
 import React from 'react';
+import { Icon } from '@iconify/react';
 import { PressureLevel } from '../types';
 
 interface PressureSectionProps {
@@ -26,7 +27,7 @@ const PressureSection: React.FC<PressureSectionProps> = ({ level, setLevel }) =>
     <section className="bg-white dark:bg-card-dark rounded-xl p-5 shadow-sm space-y-4">
       <div className="flex items-center gap-3 mb-2">
         <div className="p-2 rounded-full bg-primary/20 text-primary">
-          <span className="material-symbols-outlined">speed</span>
+          <Icon icon="material-symbols:speed" />
         </div>
         <h3 className="text-lg font-bold">Pressure Level</h3>
       </div>
@@ -46,15 +47,14 @@ const PressureSection: React.FC<PressureSectionProps> = ({ level, setLevel }) =>
                     : "bg-input-bg group-hover:bg-primary/10 opacity-50 scale-100"
                 }`}
                 >
-                <span
-                    className={`material-symbols-outlined text-2xl transition-colors ${
+                <Icon
+                    icon={`material-symbols:${l.icon.replace(/_/g, '-')}`}
+                    className={`text-2xl transition-colors ${
                     isSelected
                         ? "text-primary"
                         : "text-gray-400 group-hover:text-primary"
                     }`}
-                >
-                    {l.icon}
-                </span>
+                />
                 </div>
                 <span
                 className={`text-[10px] font-bold transition-opacity ${

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Icon } from '@iconify/react';
 import { ExerciseType } from '../types';
 import TimePickerModal from './TimePickerModal';
 
@@ -42,7 +43,7 @@ const ExerciseSection: React.FC<ExerciseSectionProps> = ({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-full bg-primary/20 text-primary">
-              <span className="material-symbols-outlined">fitness_center</span>
+              <Icon icon="material-symbols:fitness-center" className="text-2xl" />
             </div>
             <h3 className="text-lg font-bold">Exercise</h3>
           </div>
@@ -104,9 +105,7 @@ const ExerciseSection: React.FC<ExerciseSectionProps> = ({
                       onClick={() => setIsAddingCustom(true)}
                       className="flex-shrink-0 h-9 w-9 flex items-center justify-center rounded-full transition-all bg-input-bg text-gray-400 border border-transparent hover:border-primary/30 hover:text-white group"
                   >
-                      <span className="material-symbols-outlined text-xl group-hover:text-primary transition-colors">
-                      add
-                      </span>
+                      <Icon icon="material-symbols:add" className="text-xl group-hover:text-primary transition-colors" />
                   </button>
                 )}
               </div>
@@ -140,9 +139,7 @@ const ExerciseSection: React.FC<ExerciseSectionProps> = ({
                   onClick={() => setIsTimePickerOpen(true)}
                   className="bg-input-bg rounded-full h-12 flex items-center px-4 w-full relative group hover:ring-1 ring-primary/50 transition-all"
                 >
-                  <span className="material-symbols-outlined text-gray-400 mr-2 text-sm">
-                    schedule
-                  </span>
+                  <Icon icon="material-symbols:schedule" className="text-gray-400 mr-2 text-sm" />
                   <span className="text-white font-bold text-sm flex-grow text-left">
                     {startTime}
                   </span>

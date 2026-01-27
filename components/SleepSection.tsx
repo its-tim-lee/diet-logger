@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { Icon } from '@iconify/react';
 import TimePickerModal from './TimePickerModal';
 
 interface SleepSectionProps {
@@ -43,7 +44,7 @@ const SleepSection: React.FC<SleepSectionProps> = ({
       <section className="bg-white dark:bg-card-dark rounded-xl p-5 shadow-sm space-y-6">
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-full bg-primary/20 text-primary">
-            <span className="material-symbols-outlined">bedtime</span>
+            <Icon icon="material-symbols:bedtime" />
           </div>
           <h3 className="text-lg font-bold">Sleep Quality</h3>
         </div>
@@ -59,16 +60,14 @@ const SleepSection: React.FC<SleepSectionProps> = ({
                 onClick={() => handleRating(star)}
                 className="p-2 hover:bg-white/10 rounded-full transition-colors group"
               >
-                <span
-                  className={`material-symbols-outlined text-[28px] transition-colors ${
+                <Icon
+                  icon={star <= quality ? "material-symbols:star" : "material-symbols:star-outline"}
+                  className={`text-[28px] transition-colors ${
                     star <= quality 
-                      ? "text-primary fill-1" 
+                      ? "text-primary" 
                       : "text-gray-600"
                   }`}
-                  style={{ fontVariationSettings: star <= quality ? "'FILL' 1" : "'FILL' 0" }}
-                >
-                  star
-                </span>
+                />
               </button>
             ))}
           </div>

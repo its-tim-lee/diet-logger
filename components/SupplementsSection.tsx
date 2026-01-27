@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Icon } from '@iconify/react';
 import { Supplement } from '../types';
 import SupplementModal from './SupplementModal';
 
@@ -39,7 +40,7 @@ const SupplementsSection: React.FC<SupplementsSectionProps> = ({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-full bg-primary/20 text-primary">
-              <span className="material-symbols-outlined">medication</span>
+              <Icon icon="material-symbols:medication" />
             </div>
             <h3 className="text-lg font-bold">Supplements</h3>
           </div>
@@ -47,7 +48,7 @@ const SupplementsSection: React.FC<SupplementsSectionProps> = ({
             onClick={() => setIsModalOpen(true)}
             className="flex items-center justify-center h-8 w-8 rounded-full bg-input-bg hover:bg-primary/20 text-gray-400 hover:text-primary transition-colors"
           >
-            <span className="material-symbols-outlined text-xl">add</span>
+            <Icon icon="material-symbols:add" className="text-xl" />
           </button>
         </div>
         
@@ -85,7 +86,7 @@ const SupplementsSection: React.FC<SupplementsSectionProps> = ({
                 onClick={() => removeSupplement(supp.id)}
                 className="h-10 w-10 flex-shrink-0 flex items-center justify-center text-gray-500 hover:text-red-500 transition-colors"
               >
-                <span className="material-symbols-outlined">delete</span>
+                <Icon icon="material-symbols:delete" />
               </button>
             </div>
           ))}

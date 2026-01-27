@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Icon } from '@iconify/react';
 
 interface DatePickerModalProps {
   isOpen: boolean;
@@ -59,13 +60,13 @@ const DatePickerModal: React.FC<DatePickerModalProps> = ({ isOpen, onClose, sele
         
         <div className="flex items-center justify-between text-white">
           <button onClick={() => changeMonth(-1)} className="p-2 hover:bg-white/10 rounded-full">
-            <span className="material-symbols-outlined">chevron_left</span>
+            <Icon icon="material-symbols:chevron-left" />
           </button>
           <h3 className="text-lg font-bold">
             {currentMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
           </h3>
           <button onClick={() => changeMonth(1)} className="p-2 hover:bg-white/10 rounded-full">
-            <span className="material-symbols-outlined">chevron_right</span>
+            <Icon icon="material-symbols:chevron-right" />
           </button>
         </div>
 
