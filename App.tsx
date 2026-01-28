@@ -38,7 +38,6 @@ const App: React.FC = () => {
   const [sleepNotes, setSleepNotes] = useState<string>("");
 
   // State for Exercise
-  const [exerciseEnabled, setExerciseEnabled] = useState<boolean>(true);
   const [exerciseType, setExerciseType] = useState<ExerciseType | string>(
     ExerciseType.CARDIO
   );
@@ -51,7 +50,6 @@ const App: React.FC = () => {
   );
 
   // State for Daily Notes
-  const [dailyNotesEnabled, setDailyNotesEnabled] = useState<boolean>(true);
   const [dailyNotes, setDailyNotes] = useState<string>("");
 
   // State for Supplements
@@ -222,8 +220,6 @@ const App: React.FC = () => {
         />
 
         <ExerciseSection
-          enabled={exerciseEnabled}
-          setEnabled={setExerciseEnabled}
           type={exerciseType}
           setType={setExerciseType}
           duration={exerciseDuration}
@@ -235,8 +231,6 @@ const App: React.FC = () => {
         <PressureSection level={pressureLevel} setLevel={setPressureLevel} />
 
         <DailyNotesSection
-          enabled={dailyNotesEnabled}
-          setEnabled={setDailyNotesEnabled}
           notes={dailyNotes}
           setNotes={setDailyNotes}
         />

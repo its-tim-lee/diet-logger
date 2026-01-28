@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Icon } from "@iconify/react";
 import { Supplement } from "../types";
 import SupplementModal from "./SupplementModal";
+import { useToggleState } from "../src/hooks/useToggleState";
 
 interface SupplementsSectionProps {
   supplements: Supplement[];
@@ -12,6 +13,7 @@ const SupplementsSection: React.FC<SupplementsSectionProps> = ({
   supplements,
   setSupplements,
 }) => {
+  const [isExpanded, toggle] = useToggleState("supplements");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);
 
@@ -41,22 +43,52 @@ const SupplementsSection: React.FC<SupplementsSectionProps> = ({
   return (
     <>
       <section className="bg-white dark:bg-card-dark rounded-xl p-5 shadow-sm space-y-4">
-        <div className="flex items-center justify-between">
+        <div
+          className={`flex items-center justify-between transition-opacity duration-200 motion-reduce:transition-none ${
+            !isExpanded ? "opacity-50" : ""
+          }`}
+        >
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-full bg-primary/20 text-primary">
               <Icon icon="material-symbols:medication" />
             </div>
             <h3 className="text-lg font-bold">Supplements</h3>
           </div>
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="flex items-center justify-center h-8 w-8 rounded-full bg-input-bg hover:bg-primary/20 text-gray-400 hover:text-primary transition-colors"
-          >
-            <Icon icon="material-symbols:add" className="text-xl" />
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="flex items-center justify-center h-8 w-8 rounded-full bg-input-bg hover:bg-primary/20 text-gray-400 hover:text-primary transition-colors"
+            >
+              <Icon icon="material-symbols:add" className="text-xl" />
+            </button>
+            <button
+              onClick={toggle}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  toggle();
+                }
+              }}
+              className="flex items-center justify-center h-8 w-8 rounded-full hover:bg-input-bg text-gray-400 hover:text-primary transition-colors"
+              aria-label={isExpanded ? "Collapse section" : "Expand section"}
+              aria-expanded={isExpanded}
+            >
+              <Icon
+                icon="material-symbols:chevron-down"
+                className={`text-xl transition-transform duration-200 motion-reduce:transition-none ${
+                  isExpanded ? "" : "-rotate-90"
+                }`}
+              />
+            </button>
+          </div>
         </div>
 
-        <div className="space-y-3">
+        <div
+          className={`space-y-3 overflow-hidden transition-all duration-300 ease-in-out motion-reduce:transition-none ${
+            isExpanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+          }`}
+          style={{ transitionProperty: "max-height, opacity" }}
+        >
           {supplements.map((supp) => (
             <div
               key={supp.id}

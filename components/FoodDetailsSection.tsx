@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Icon } from "@iconify/react";
 import { FoodItem } from "../types";
+import { useToggleState } from "../src/hooks/useToggleState";
 
 interface FoodDetailsSectionProps {
   items: FoodItem[];
@@ -17,6 +18,7 @@ const FoodDetailsSection: React.FC<FoodDetailsSectionProps> = ({
   deleteItem,
   onOpenSearch,
 }) => {
+  const [isExpanded, toggle] = useToggleState("food-details");
   const [suggestions, setSuggestions] = useState([
     "Lemon Dressing",
     "Feta Cheese",
@@ -57,22 +59,52 @@ const FoodDetailsSection: React.FC<FoodDetailsSectionProps> = ({
 
   return (
     <section className="bg-white dark:bg-card-dark rounded-xl p-5 shadow-sm space-y-5">
-      <div className="flex items-center justify-between">
+      <div
+        className={`flex items-center justify-between transition-opacity duration-200 motion-reduce:transition-none ${
+          !isExpanded ? "opacity-50" : ""
+        }`}
+      >
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-full bg-primary/20 text-primary">
             <Icon icon="material-symbols:menu-book" />
           </div>
           <h3 className="text-lg font-bold">Food Details</h3>
         </div>
-        <button
-          className="flex items-center justify-center h-8 w-8 rounded-full bg-input-bg hover:bg-primary/20 text-gray-400 hover:text-primary transition-colors"
-          onClick={onOpenSearch}
-        >
-          <Icon icon="material-symbols:add" className="text-xl" />
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            className="flex items-center justify-center h-8 w-8 rounded-full bg-input-bg hover:bg-primary/20 text-gray-400 hover:text-primary transition-colors"
+            onClick={onOpenSearch}
+          >
+            <Icon icon="material-symbols:add" className="text-xl" />
+          </button>
+          <button
+            onClick={toggle}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                toggle();
+              }
+            }}
+            className="flex items-center justify-center h-8 w-8 rounded-full hover:bg-input-bg text-gray-400 hover:text-primary transition-colors"
+            aria-label={isExpanded ? "Collapse section" : "Expand section"}
+            aria-expanded={isExpanded}
+          >
+            <Icon
+              icon="material-symbols:chevron-down"
+              className={`text-xl transition-transform duration-200 motion-reduce:transition-none ${
+                isExpanded ? "" : "-rotate-90"
+              }`}
+            />
+          </button>
+        </div>
       </div>
 
-      <div className="flex flex-col gap-3">
+      <div
+        className={`flex flex-col gap-3 overflow-hidden transition-all duration-300 ease-in-out motion-reduce:transition-none ${
+          isExpanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+        }`}
+        style={{ transitionProperty: "max-height, opacity" }}
+      >
         {items.map((item) => (
           <div
             key={item.id}
@@ -131,7 +163,12 @@ const FoodDetailsSection: React.FC<FoodDetailsSectionProps> = ({
         ))}
       </div>
 
-      <div className="pt-1">
+      <div
+        className={`pt-1 overflow-hidden transition-all duration-300 ease-in-out motion-reduce:transition-none ${
+          isExpanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+        }`}
+        style={{ transitionProperty: "max-height, opacity" }}
+      >
         <div className="flex items-center gap-2 mb-3">
           <Icon
             icon="material-symbols:auto-awesome"

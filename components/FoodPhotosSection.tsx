@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Icon } from "@iconify/react";
 import { FoodPhoto } from "../types";
+import { useToggleState } from "../src/hooks/useToggleState";
 
 interface FoodPhotosSectionProps {
   photos: FoodPhoto[];
@@ -11,6 +12,7 @@ const FoodPhotosSection: React.FC<FoodPhotosSectionProps> = ({
   photos,
   onEnhanceComplete,
 }) => {
+  const [isExpanded, toggle] = useToggleState("food-photos");
   const [localPhotos, setLocalPhotos] = useState<FoodPhoto[]>(photos);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const selectedCount = localPhotos.filter((p) => p.selected).length;
@@ -55,7 +57,11 @@ const FoodPhotosSection: React.FC<FoodPhotosSectionProps> = ({
 
   return (
     <section className="bg-white dark:bg-card-dark rounded-xl p-5 shadow-sm space-y-4">
-      <div className="flex items-center justify-between">
+      <div
+        className={`flex items-center justify-between transition-opacity duration-200 motion-reduce:transition-none ${
+          !isExpanded ? "opacity-50" : ""
+        }`}
+      >
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-full bg-primary/20 text-primary">
             <Icon icon="material-symbols:restaurant" />
@@ -67,12 +73,33 @@ const FoodPhotosSection: React.FC<FoodPhotosSectionProps> = ({
             </span>
           </div>
         </div>
-        <button
-          onClick={handleAddPhoto}
-          className="flex items-center justify-center h-8 w-8 rounded-full bg-input-bg hover:bg-primary/20 text-gray-400 hover:text-primary transition-colors"
-        >
-          <Icon icon="material-symbols:add-a-photo" className="text-xl" />
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleAddPhoto}
+            className="flex items-center justify-center h-8 w-8 rounded-full bg-input-bg hover:bg-primary/20 text-gray-400 hover:text-primary transition-colors"
+          >
+            <Icon icon="material-symbols:add-a-photo" className="text-xl" />
+          </button>
+          <button
+            onClick={toggle}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                toggle();
+              }
+            }}
+            className="flex items-center justify-center h-8 w-8 rounded-full hover:bg-input-bg text-gray-400 hover:text-primary transition-colors"
+            aria-label={isExpanded ? "Collapse section" : "Expand section"}
+            aria-expanded={isExpanded}
+          >
+            <Icon
+              icon="material-symbols:chevron-down"
+              className={`text-xl transition-transform duration-200 motion-reduce:transition-none ${
+                isExpanded ? "" : "-rotate-90"
+              }`}
+            />
+          </button>
+        </div>
         <input
           type="file"
           ref={fileInputRef}
@@ -83,7 +110,12 @@ const FoodPhotosSection: React.FC<FoodPhotosSectionProps> = ({
         />
       </div>
 
-      <div className="flex gap-4 overflow-x-auto no-scrollbar -mx-1 px-1 pb-2">
+      <div
+        className={`flex gap-4 overflow-x-auto no-scrollbar -mx-1 px-1 pb-2 overflow-hidden transition-all duration-300 ease-in-out motion-reduce:transition-none ${
+          isExpanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+        }`}
+        style={{ transitionProperty: "max-height, opacity" }}
+      >
         {localPhotos.map((photo) => (
           <div
             key={photo.id}

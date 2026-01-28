@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Icon } from "@iconify/react";
 import { ExerciseType } from "../types";
 import TimePickerModal from "./TimePickerModal";
+import { useToggleState } from "../src/hooks/useToggleState";
 
 interface ExerciseSectionProps {
-  enabled: boolean;
-  setEnabled: (val: boolean) => void;
+  enabled?: boolean;
+  setEnabled?: (val: boolean) => void;
   type: ExerciseType | string;
   setType: (val: ExerciseType | string) => void;
   duration: number;
@@ -24,6 +25,11 @@ const ExerciseSection: React.FC<ExerciseSectionProps> = ({
   startTime,
   setStartTime,
 }) => {
+  // Use hook for toggle state with localStorage persistence
+  const [isExpanded, toggle] = useToggleState("exercise");
+  // Use hook value if props not provided (backwards compatibility)
+  const expanded = enabled ?? isExpanded;
+
   const types = [ExerciseType.CARDIO, ExerciseType.WORKOUT, ExerciseType.YOGA];
   const [isAddingCustom, setIsAddingCustom] = useState(false);
   const [customType, setCustomType] = useState("");
@@ -37,10 +43,24 @@ const ExerciseSection: React.FC<ExerciseSectionProps> = ({
     }
   };
 
+  const handleToggle = () => {
+    if (setEnabled) {
+      // If props are provided, use them (backwards compatibility)
+      setEnabled(!expanded);
+    } else {
+      // Otherwise use hook toggle
+      toggle();
+    }
+  };
+
   return (
     <>
       <section className="bg-white dark:bg-card-dark rounded-xl p-5 shadow-sm space-y-6">
-        <div className="flex items-center justify-between">
+        <div
+          className={`flex items-center justify-between transition-opacity duration-200 motion-reduce:transition-none ${
+            expanded ? "opacity-100" : "opacity-50"
+          }`}
+        >
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-full bg-primary/20 text-primary">
               <Icon
@@ -50,18 +70,29 @@ const ExerciseSection: React.FC<ExerciseSectionProps> = ({
             </div>
             <h3 className="text-lg font-bold">Exercise</h3>
           </div>
-          <label className="inline-flex items-center cursor-pointer">
-            <input
-              type="checkbox"
-              className="sr-only peer"
-              checked={enabled}
-              onChange={(e) => setEnabled(e.target.checked)}
+          <button
+            onClick={handleToggle}
+            className="p-2 hover:bg-gray-700/50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
+            aria-label={expanded ? "Collapse section" : "Expand section"}
+            aria-expanded={expanded}
+          >
+            <Icon
+              icon="mdi:chevron-down"
+              className={`text-2xl text-gray-400 transition-transform duration-200 motion-reduce:transition-none ${
+                expanded ? "rotate-0" : "-rotate-90"
+              }`}
             />
-            <div className="relative w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-          </label>
+          </button>
         </div>
 
-        {enabled && (
+        <div
+          className={`transition-all duration-300 ease-in-out motion-reduce:transition-none overflow-hidden ${
+            expanded
+              ? "max-h-[1000px] opacity-100"
+              : "max-h-0 opacity-0 pointer-events-none"
+          }`}
+        >
+          {expanded && (
           <>
             <div className="flex flex-col gap-2 animate-fadeIn">
               <label className="text-xs uppercase tracking-wider font-bold text-gray-500 dark:text-gray-400">
@@ -160,7 +191,8 @@ const ExerciseSection: React.FC<ExerciseSectionProps> = ({
               </div>
             </div>
           </>
-        )}
+          )}
+        </div>
       </section>
 
       <TimePickerModal
