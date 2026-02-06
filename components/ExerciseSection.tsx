@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Icon } from "@iconify/react";
-import { MaterialSymbol } from "react-material-symbols";
 import { ExerciseType } from "../types";
 import TimePickerModal from "./TimePickerModal";
 import { useToggleState } from "../src/hooks/useToggleState";
@@ -77,8 +76,8 @@ const ExerciseSection: React.FC<ExerciseSectionProps> = ({
             aria-label={expanded ? "Collapse section" : "Expand section"}
             aria-expanded={expanded}
           >
-            <MaterialSymbol
-              icon="expand_more"
+            <Icon
+              icon="material-symbols:expand-more"
               className={`text-2xl transition-transform ${expanded ? "" : "-rotate-90"}`}
             />
           </button>

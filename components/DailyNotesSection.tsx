@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
-import { MaterialSymbol } from "react-material-symbols";
 import VoiceWaveform from "./VoiceWaveform";
 import { useToggleState } from "../src/hooks/useToggleState";
 
@@ -87,8 +86,8 @@ const DailyNotesSection: React.FC<DailyNotesSectionProps> = ({
           aria-label={expanded ? "Collapse section" : "Expand section"}
           aria-expanded={expanded}
         >
-          <MaterialSymbol
-            icon="expand_more"
+          <Icon
+            icon="material-symbols:expand-more"
             className={`text-2xl transition-transform ${expanded ? "" : "-rotate-90"}`}
           />
         </button>

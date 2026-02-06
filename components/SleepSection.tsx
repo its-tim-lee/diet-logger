@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
-import { MaterialSymbol } from "react-material-symbols";
 import TimePickerModal from "./TimePickerModal";
 import { useToggleState } from "../src/hooks/useToggleState";
 
@@ -63,8 +62,8 @@ const SleepSection: React.FC<SleepSectionProps> = ({
             aria-label={isExpanded ? "Collapse section" : "Expand section"}
             aria-expanded={isExpanded}
           >
-            <MaterialSymbol
-              icon="expand_more"
+            <Icon
+              icon="material-symbols:expand-more"
               className={`text-2xl transition-transform ${isExpanded ? "" : "-rotate-90"}`}
             />
           </button>

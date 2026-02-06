@@ -1,6 +1,5 @@
 import React from "react";
 import { Icon } from "@iconify/react";
-import { MaterialSymbol } from "react-material-symbols";
 import { PressureLevel } from "../types";
 import { useToggleState } from "../src/hooks/useToggleState";
 
@@ -60,8 +59,8 @@ const PressureSection: React.FC<PressureSectionProps> = ({
           aria-label={isExpanded ? "Collapse section" : "Expand section"}
           aria-expanded={isExpanded}
         >
-          <MaterialSymbol
-            icon="expand_more"
+          <Icon
+            icon="material-symbols:expand-more"
             className={`text-2xl transition-transform ${isExpanded ? "" : "-rotate-90"}`}
           />
         </button>
