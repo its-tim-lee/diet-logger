@@ -5,8 +5,6 @@ import TimePickerModal from "./TimePickerModal";
 import { useToggleState } from "../src/hooks/useToggleState";
 
 interface ExerciseSectionProps {
-  enabled?: boolean;
-  setEnabled?: (val: boolean) => void;
   type: ExerciseType | string;
   setType: (val: ExerciseType | string) => void;
   duration: number;
@@ -16,8 +14,6 @@ interface ExerciseSectionProps {
 }
 
 const ExerciseSection: React.FC<ExerciseSectionProps> = ({
-  enabled,
-  setEnabled,
   type,
   setType,
   duration,
@@ -27,8 +23,6 @@ const ExerciseSection: React.FC<ExerciseSectionProps> = ({
 }) => {
   // Use hook for toggle state with localStorage persistence
   const [isExpanded, toggle] = useToggleState("exercise");
-  // Use hook value if props not provided (backwards compatibility)
-  const expanded = enabled ?? isExpanded;
 
   const types = [ExerciseType.CARDIO, ExerciseType.WORKOUT, ExerciseType.YOGA];
   const [isAddingCustom, setIsAddingCustom] = useState(false);
@@ -43,22 +37,15 @@ const ExerciseSection: React.FC<ExerciseSectionProps> = ({
     }
   };
 
-  const handleToggle = () => {
-    if (setEnabled) {
-      // If props are provided, use them (backwards compatibility)
-      setEnabled(!expanded);
-    } else {
-      // Otherwise use hook toggle
-      toggle();
-    }
-  };
 
   return (
     <>
-      <section className="bg-white dark:bg-card-dark rounded-xl p-5 shadow-sm space-y-6">
+      <section className={`bg-white dark:bg-card-dark rounded-xl shadow-sm transition-all duration-200 motion-reduce:transition-none ${
+        isExpanded ? 'p-5 space-y-6' : 'py-3 px-5'
+      }`}>
         <div
           className={`flex items-center justify-between transition-opacity duration-200 motion-reduce:transition-none ${
-            !expanded ? "opacity-50" : ""
+            !isExpanded ? "opacity-50" : ""
           }`}
         >
           <div className="flex items-center gap-3">
@@ -71,26 +58,26 @@ const ExerciseSection: React.FC<ExerciseSectionProps> = ({
             <h3 className="text-lg font-bold">Exercise</h3>
           </div>
           <button
-            onClick={handleToggle}
+            onClick={toggle}
             className="h-8 w-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-            aria-label={expanded ? "Collapse section" : "Expand section"}
-            aria-expanded={expanded}
+            aria-label={isExpanded ? "Collapse section" : "Expand section"}
+            aria-expanded={isExpanded}
           >
             <Icon
               icon="material-symbols:expand-more"
-              className={`text-2xl transition-transform ${expanded ? "" : "-rotate-90"}`}
+              className={`text-2xl transition-transform ${isExpanded ? "" : "-rotate-90"}`}
             />
           </button>
         </div>
 
         <div
           className={`transition-all duration-300 ease-in-out motion-reduce:transition-none overflow-hidden ${
-            expanded
+            isExpanded
               ? "max-h-[1000px] opacity-100"
               : "max-h-0 opacity-0 pointer-events-none"
           }`}
         >
-          {expanded && (
+          {isExpanded && (
           <>
             <div className="flex flex-col gap-2 animate-fadeIn">
               <label className="text-xs uppercase tracking-wider font-bold text-gray-500 dark:text-gray-400">

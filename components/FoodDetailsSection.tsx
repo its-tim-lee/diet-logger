@@ -58,7 +58,9 @@ const FoodDetailsSection: React.FC<FoodDetailsSectionProps> = ({
   };
 
   return (
-    <section className="bg-white dark:bg-card-dark rounded-xl p-5 shadow-sm space-y-5">
+    <section className={`bg-white dark:bg-card-dark rounded-xl shadow-sm transition-all duration-200 motion-reduce:transition-none ${
+      isExpanded ? 'p-5 space-y-5' : 'py-3 px-5'
+    }`}>
       <div
         className={`flex items-center justify-between transition-opacity duration-200 motion-reduce:transition-none ${
           !isExpanded ? "opacity-50" : ""
@@ -71,12 +73,14 @@ const FoodDetailsSection: React.FC<FoodDetailsSectionProps> = ({
           <h3 className="text-lg font-bold">Food Details</h3>
         </div>
         <div className="flex items-center gap-2">
-          <button
-            className="flex items-center justify-center h-8 w-8 rounded-full bg-input-bg hover:bg-primary/20 text-gray-400 hover:text-primary transition-colors"
-            onClick={onOpenSearch}
-          >
-            <Icon icon="material-symbols:add" className="text-xl" />
-          </button>
+          {isExpanded && (
+            <button
+              className="flex items-center justify-center h-8 w-8 rounded-full bg-input-bg hover:bg-primary/20 text-gray-400 hover:text-primary transition-colors"
+              onClick={onOpenSearch}
+            >
+              <Icon icon="material-symbols:add" className="text-xl" />
+            </button>
+          )}
           <button
             onClick={toggle}
             onKeyDown={(e) => {
@@ -90,7 +94,7 @@ const FoodDetailsSection: React.FC<FoodDetailsSectionProps> = ({
             aria-expanded={isExpanded}
           >
             <Icon
-              icon="material-symbols:chevron-down"
+              icon="material-symbols:expand-more"
               className={`text-xl transition-transform duration-200 motion-reduce:transition-none ${
                 isExpanded ? "" : "-rotate-90"
               }`}

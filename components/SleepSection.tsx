@@ -44,7 +44,9 @@ const SleepSection: React.FC<SleepSectionProps> = ({
 
   return (
     <>
-      <section className="bg-white dark:bg-card-dark rounded-xl p-5 shadow-sm space-y-6">
+      <section className={`bg-white dark:bg-card-dark rounded-xl shadow-sm transition-all duration-200 motion-reduce:transition-none ${
+        isExpanded ? 'p-5 space-y-6' : 'py-3 px-5'
+      }`}>
         <div
           className={`flex items-center justify-between transition-opacity motion-reduce:transition-none ${
             !isExpanded ? "opacity-50" : ""

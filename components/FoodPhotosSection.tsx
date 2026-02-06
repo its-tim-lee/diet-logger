@@ -56,7 +56,9 @@ const FoodPhotosSection: React.FC<FoodPhotosSectionProps> = ({
   };
 
   return (
-    <section className="bg-white dark:bg-card-dark rounded-xl p-5 shadow-sm space-y-4">
+    <section className={`bg-white dark:bg-card-dark rounded-xl shadow-sm transition-all duration-200 motion-reduce:transition-none ${
+      isExpanded ? 'p-5 space-y-4' : 'py-3 px-5'
+    }`}>
       <div
         className={`flex items-center justify-between transition-opacity duration-200 motion-reduce:transition-none ${
           !isExpanded ? "opacity-50" : ""
@@ -68,18 +70,22 @@ const FoodPhotosSection: React.FC<FoodPhotosSectionProps> = ({
           </div>
           <div className="flex items-baseline gap-2">
             <h3 className="text-lg font-bold">Food Photos</h3>
-            <span className="text-xs text-primary font-medium">
-              {selectedCount} Selected
-            </span>
+            {isExpanded && (
+              <span className="text-xs text-primary font-medium">
+                {selectedCount} Selected
+              </span>
+            )}
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <button
-            onClick={handleAddPhoto}
-            className="flex items-center justify-center h-8 w-8 rounded-full bg-input-bg hover:bg-primary/20 text-gray-400 hover:text-primary transition-colors"
-          >
-            <Icon icon="material-symbols:add-a-photo" className="text-xl" />
-          </button>
+          {isExpanded && (
+            <button
+              onClick={handleAddPhoto}
+              className="flex items-center justify-center h-8 w-8 rounded-full bg-input-bg hover:bg-primary/20 text-gray-400 hover:text-primary transition-colors"
+            >
+              <Icon icon="material-symbols:add-a-photo" className="text-xl" />
+            </button>
+          )}
           <button
             onClick={toggle}
             onKeyDown={(e) => {
@@ -93,7 +99,7 @@ const FoodPhotosSection: React.FC<FoodPhotosSectionProps> = ({
             aria-expanded={isExpanded}
           >
             <Icon
-              icon="material-symbols:chevron-down"
+              icon="material-symbols:expand-more"
               className={`text-xl transition-transform duration-200 motion-reduce:transition-none ${
                 isExpanded ? "" : "-rotate-90"
               }`}
