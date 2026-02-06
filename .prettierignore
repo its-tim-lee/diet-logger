@@ -1,0 +1,22 @@
+# Dependencies
+node_modules
+pnpm-lock.yaml
+
+# Build artifacts
+dist
+build
+.vite
+
+# Storybook (owned by another worker)
+.storybook
+**/*.stories.tsx
+
+# Config files
+.git
+.serena
+
+# Logs
+*.log
+
+# Temp files
+tmp
