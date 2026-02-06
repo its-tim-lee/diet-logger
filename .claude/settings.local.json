@@ -17,7 +17,8 @@
       "Bash(if [ -d \"openspec/changes/archive/2026-02-06-refine-section-toggle-consistency\" ])",
       "Bash(then echo \"EXISTS\")",
       "Bash(else echo \"OK\")",
-      "Bash(fi)"
+      "Bash(fi)",
+      "Bash(~/.claude-orchestrator/bin/claude-orchestrator:*)"
     ]
   }
 }
