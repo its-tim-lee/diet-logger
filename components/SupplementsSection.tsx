@@ -15,7 +15,7 @@ const SupplementsSection: React.FC<SupplementsSectionProps> = ({
 }) => {
   const [isExpanded, toggle] = useToggleState("supplements");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editId, setEditId] = useState<string | null>(null);
+  const [editId, _setEditId] = useState<string | null>(null);
 
   const addSupplement = (name: string) => {
     const newSupp: Supplement = {
