@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__better-icons__find_similar_icons",
+      "mcp__serena__search_for_pattern",
+      "Bash(openspec new:*)",
+      "Bash(openspec status:*)",
+      "Bash(openspec instructions proposal:*)",
+      "Bash(openspec instructions design:*)",
+      "Bash(openspec list:*)",
+      "Bash(openspec instructions specs:*)",
+      "Bash(openspec instructions tasks:*)"
+    ]
+  }
+}
