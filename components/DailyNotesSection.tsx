@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
+import { MaterialSymbol } from "react-material-symbols";
 import VoiceWaveform from "./VoiceWaveform";
 import { useToggleState } from "../src/hooks/useToggleState";
 
@@ -71,7 +72,7 @@ const DailyNotesSection: React.FC<DailyNotesSectionProps> = ({
     <section className="bg-white dark:bg-card-dark rounded-xl p-5 shadow-sm space-y-4">
       <div
         className={`flex items-center justify-between transition-opacity duration-200 motion-reduce:transition-none ${
-          expanded ? "opacity-100" : "opacity-50"
+          !expanded ? "opacity-50" : ""
         }`}
       >
         <div className="flex items-center gap-3">
@@ -82,15 +83,13 @@ const DailyNotesSection: React.FC<DailyNotesSectionProps> = ({
         </div>
         <button
           onClick={handleToggle}
-          className="p-2 hover:bg-gray-700/50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
+          className="h-8 w-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
           aria-label={expanded ? "Collapse section" : "Expand section"}
           aria-expanded={expanded}
         >
-          <Icon
-            icon="mdi:chevron-down"
-            className={`text-2xl text-gray-400 transition-transform duration-200 motion-reduce:transition-none ${
-              expanded ? "rotate-0" : "-rotate-90"
-            }`}
+          <MaterialSymbol
+            icon="expand_more"
+            className={`text-2xl transition-transform ${expanded ? "" : "-rotate-90"}`}
           />
         </button>
       </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Icon } from "@iconify/react";
+import { MaterialSymbol } from "react-material-symbols";
 import { PressureLevel } from "../types";
 import { useToggleState } from "../src/hooks/useToggleState";
 
@@ -40,28 +41,12 @@ const PressureSection: React.FC<PressureSectionProps> = ({
     setLevel(val);
   };
 
-  const handleToggle = (e: React.MouseEvent | React.KeyboardEvent) => {
-    if (
-      e.type === "click" ||
-      (e as React.KeyboardEvent).key === "Enter" ||
-      (e as React.KeyboardEvent).key === " "
-    ) {
-      e.preventDefault();
-      toggle();
-    }
-  };
-
   return (
     <section className="bg-white dark:bg-card-dark rounded-xl p-5 shadow-sm space-y-4">
       <div
-        className={`flex items-center justify-between cursor-pointer transition-opacity motion-reduce:transition-none ${
+        className={`flex items-center justify-between transition-opacity motion-reduce:transition-none ${
           !isExpanded ? "opacity-50" : ""
         }`}
-        onClick={handleToggle}
-        onKeyDown={handleToggle}
-        role="button"
-        tabIndex={0}
-        aria-expanded={isExpanded}
       >
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-full bg-primary/20 text-primary">
@@ -69,12 +54,17 @@ const PressureSection: React.FC<PressureSectionProps> = ({
           </div>
           <h3 className="text-lg font-bold">Pressure Level</h3>
         </div>
-        <Icon
-          icon="mdi:chevron-down"
-          className={`text-2xl transition-transform duration-200 motion-reduce:transition-none ${
-            !isExpanded ? "rotate-[-90deg]" : ""
-          }`}
-        />
+        <button
+          onClick={toggle}
+          className="h-8 w-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+          aria-label={isExpanded ? "Collapse section" : "Expand section"}
+          aria-expanded={isExpanded}
+        >
+          <MaterialSymbol
+            icon="expand_more"
+            className={`text-2xl transition-transform ${isExpanded ? "" : "-rotate-90"}`}
+          />
+        </button>
       </div>
       <div
         className={`transition-all duration-300 ease-in-out motion-reduce:transition-none overflow-hidden ${

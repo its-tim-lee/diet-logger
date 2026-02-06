@@ -101,7 +101,7 @@ const FoodDetailsSection: React.FC<FoodDetailsSectionProps> = ({
 
       <div
         className={`flex flex-col gap-3 overflow-hidden transition-all duration-300 ease-in-out motion-reduce:transition-none ${
-          isExpanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+          isExpanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0 pointer-events-none"
         }`}
         style={{ transitionProperty: "max-height, opacity" }}
       >
@@ -165,7 +165,7 @@ const FoodDetailsSection: React.FC<FoodDetailsSectionProps> = ({
 
       <div
         className={`pt-1 overflow-hidden transition-all duration-300 ease-in-out motion-reduce:transition-none ${
-          isExpanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+          isExpanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0 pointer-events-none"
         }`}
         style={{ transitionProperty: "max-height, opacity" }}
       >

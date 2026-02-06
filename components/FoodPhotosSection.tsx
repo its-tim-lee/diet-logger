@@ -112,7 +112,7 @@ const FoodPhotosSection: React.FC<FoodPhotosSectionProps> = ({
 
       <div
         className={`flex gap-4 overflow-x-auto no-scrollbar -mx-1 px-1 pb-2 overflow-hidden transition-all duration-300 ease-in-out motion-reduce:transition-none ${
-          isExpanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+          isExpanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0 pointer-events-none"
         }`}
         style={{ transitionProperty: "max-height, opacity" }}
       >
