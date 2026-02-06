@@ -9,7 +9,15 @@
       "Bash(openspec instructions design:*)",
       "Bash(openspec list:*)",
       "Bash(openspec instructions specs:*)",
-      "Bash(openspec instructions tasks:*)"
+      "Bash(openspec instructions tasks:*)",
+      "Skill(spawn)",
+      "Bash(osascript:*)",
+      "Bash(openspec instructions apply:*)",
+      "Bash(done)",
+      "Bash(if [ -d \"openspec/changes/archive/2026-02-06-refine-section-toggle-consistency\" ])",
+      "Bash(then echo \"EXISTS\")",
+      "Bash(else echo \"OK\")",
+      "Bash(fi)"
     ]
   }
 }
