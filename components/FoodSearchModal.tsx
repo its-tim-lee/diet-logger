@@ -68,7 +68,7 @@ const FoodSearchModal: React.FC<FoodSearchModalProps> = ({
         </h3>
 
         <div className="bg-input-bg rounded-xl flex items-center px-4 h-12 border border-transparent focus-within:border-primary/50 transition-colors">
-          <Icon icon="material-symbols:search" className="text-gray-400 mr-2" />
+          <Icon icon="material-symbols:search" className="text-xl text-gray-400 mr-2" />
           <input
             className="bg-transparent border-none text-white w-full focus:ring-0 p-0 text-sm placeholder-gray-500"
             placeholder="Search food..."
@@ -91,7 +91,7 @@ const FoodSearchModal: React.FC<FoodSearchModalProps> = ({
               <span className="font-medium">{food}</span>
               <Icon
                 icon="material-symbols:add-circle"
-                className="text-gray-500 group-hover:text-primary transition-colors"
+                className="text-xl text-gray-500 group-hover:text-primary transition-colors duration-200"
               />
             </button>
           ))}
@@ -104,7 +104,7 @@ const FoodSearchModal: React.FC<FoodSearchModalProps> = ({
               className="flex items-center justify-between p-4 rounded-xl bg-primary/10 hover:bg-primary/20 text-primary transition-colors border border-primary/20"
             >
               <span className="font-medium">Add "{searchTerm}"</span>
-              <Icon icon="material-symbols:add" />
+              <Icon icon="material-symbols:add" className="text-xl" />
             </button>
           )}
         </div>

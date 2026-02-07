@@ -68,7 +68,7 @@ const FoodDetailsSection: React.FC<FoodDetailsSectionProps> = ({
       >
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-full bg-primary/20 text-primary">
-            <Icon icon="material-symbols:menu-book" />
+            <Icon icon="material-symbols:menu-book" className="text-2xl" />
           </div>
           <h3 className="text-lg font-bold">Food Details</h3>
         </div>
@@ -95,7 +95,7 @@ const FoodDetailsSection: React.FC<FoodDetailsSectionProps> = ({
           >
             <Icon
               icon="material-symbols:expand-more"
-              className={`text-xl transition-transform duration-200 motion-reduce:transition-none ${
+              className={`text-2xl transition-transform duration-200 motion-reduce:transition-none ${
                 isExpanded ? "" : "-rotate-90"
               }`}
             />
@@ -174,13 +174,16 @@ const FoodDetailsSection: React.FC<FoodDetailsSectionProps> = ({
         style={{ transitionProperty: "max-height, opacity" }}
       >
         <div className="flex items-center gap-2 mb-3">
-          <Icon
-            icon="material-symbols:auto-awesome"
-            className="text-primary text-sm animate-pulse"
-          />
-          <span className="text-xs font-bold text-gray-400 uppercase tracking-wide">
-            AI Suggestions based on photo
-          </span>
+          <div className="relative inline-flex items-center gap-2 rounded-full border border-primary/30 bg-gradient-to-r from-primary/20 to-primary/10 hover:from-primary/30 hover:to-primary/20 transition-colors motion-reduce:transition-none px-3 py-1.5">
+            <span className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-r from-primary/20 to-primary/10 opacity-60 animate-pulse-slow motion-reduce:animate-none" />
+            <Icon
+              icon="material-symbols:auto-awesome"
+              className="relative text-primary text-xl drop-shadow-glow-primary"
+            />
+            <span className="relative text-xs font-bold text-gray-300 uppercase tracking-wide">
+              AI Suggestions based on photo
+            </span>
+          </div>
         </div>
         <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1 min-h-[40px]">
           {suggestions.map((s) => (
@@ -191,7 +194,7 @@ const FoodDetailsSection: React.FC<FoodDetailsSectionProps> = ({
                 removedChip === s ? "animate-fade-out" : ""
               }`}
             >
-              <Icon icon="material-symbols:add" className="text-sm" />
+              <Icon icon="material-symbols:add" className="text-lg" />
               {s}
             </button>
           ))}

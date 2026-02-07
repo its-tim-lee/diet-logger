@@ -108,7 +108,7 @@ const DailyNotesSection: React.FC<DailyNotesSectionProps> = ({
               {isRecording ? (
                 <VoiceWaveform />
               ) : (
-                <Icon icon="material-symbols:mic" className="text-[20px]" />
+                <Icon icon="material-symbols:mic" className="text-xl" />
               )}
             </button>
           </div>

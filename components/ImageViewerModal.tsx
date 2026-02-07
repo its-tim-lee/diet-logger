@@ -40,7 +40,7 @@ const ImageViewerModal: React.FC<ImageViewerModalProps> = ({
         className="absolute top-4 right-4 h-10 w-10 rounded-full bg-white/10 text-white flex items-center justify-center backdrop-blur-md z-10"
         onClick={onClose}
       >
-        <Icon icon="material-symbols:close" />
+        <Icon icon="material-symbols:close" className="text-xl" />
       </button>
 
       <img

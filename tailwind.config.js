@@ -28,8 +28,12 @@ export default {
         "2xl": "2.5rem",
         "full": "9999px",
       },
+      dropShadow: {
+        'glow-primary': '0 0 8px rgba(91, 236, 19, 0.4)',
+      },
       animation: {
         'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'shimmer': 'shimmer 2s linear infinite',
         'fade-out': 'fadeOut 0.5s ease-out forwards',
         'wave': 'wave 1s ease-in-out infinite',

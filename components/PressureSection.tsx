@@ -51,7 +51,7 @@ const PressureSection: React.FC<PressureSectionProps> = ({
       >
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-full bg-primary/20 text-primary">
-            <Icon icon="material-symbols:speed" />
+            <Icon icon="material-symbols:speed" className="text-2xl" />
           </div>
           <h3 className="text-lg font-bold">Pressure Level</h3>
         </div>
@@ -104,7 +104,7 @@ const PressureSection: React.FC<PressureSectionProps> = ({
                   />
                 </div>
                 <span
-                  className={`text-[10px] font-bold transition-opacity ${
+                  className={`text-xs font-bold transition-opacity ${
                     l.label === "." ? "text-transparent" : "text-gray-500"
                   }`}
                 >
