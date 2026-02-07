@@ -54,7 +54,7 @@ const SleepSection: React.FC<SleepSectionProps> = ({
         >
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-full bg-primary/20 text-primary">
-              <Icon icon="material-symbols:bedtime" />
+              <Icon icon="material-symbols:bedtime" className="text-2xl" />
             </div>
             <h3 className="text-lg font-bold">Sleep Quality</h3>
           </div>
@@ -99,7 +99,7 @@ const SleepSection: React.FC<SleepSectionProps> = ({
                         ? "material-symbols:star"
                         : "material-symbols:star-outline"
                     }
-                    className={`text-[28px] transition-colors ${
+                    className={`text-3xl transition-colors ${
                       star <= quality ? "text-primary" : "text-gray-600"
                     }`}
                   />

@@ -66,7 +66,7 @@ const FoodPhotosSection: React.FC<FoodPhotosSectionProps> = ({
       >
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-full bg-primary/20 text-primary">
-            <Icon icon="material-symbols:restaurant" />
+            <Icon icon="material-symbols:restaurant" className="text-2xl" />
           </div>
           <div className="flex items-baseline gap-2">
             <h3 className="text-lg font-bold">Food Photos</h3>
@@ -100,7 +100,7 @@ const FoodPhotosSection: React.FC<FoodPhotosSectionProps> = ({
           >
             <Icon
               icon="material-symbols:expand-more"
-              className={`text-xl transition-transform duration-200 motion-reduce:transition-none ${
+              className={`text-2xl transition-transform duration-200 motion-reduce:transition-none ${
                 isExpanded ? "" : "-rotate-90"
               }`}
             />
@@ -157,15 +157,16 @@ const FoodPhotosSection: React.FC<FoodPhotosSectionProps> = ({
 
             <button
               onClick={(e) => handleReEnhance(photo.id, e)}
-              className={`absolute bottom-2 right-2 flex items-center gap-1 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full text-[10px] font-bold text-white border border-white/10 ${
-                photo.selected ? "hover:bg-black/80" : ""
-              } transition-colors z-10 active:scale-95`}
+              className={`absolute bottom-2 right-2 overflow-hidden flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold border border-primary/30 bg-gradient-to-r from-primary/20 to-primary/10 hover:from-primary/30 hover:to-primary/20 transition-colors motion-reduce:transition-none z-10 active:scale-95 ${
+                photo.selected ? "" : "opacity-80"
+              }`}
             >
+              <span className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-r from-primary/20 to-primary/10 opacity-60 animate-pulse-slow motion-reduce:animate-none" />
               <Icon
                 icon="material-symbols:auto-fix-high"
-                className="text-primary text-xs"
+                className="relative text-primary text-xl drop-shadow-glow-primary"
               />
-              Re-enhance
+              <span className="relative text-white">Re-enhance</span>
             </button>
           </div>
         ))}

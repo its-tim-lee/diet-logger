@@ -167,7 +167,7 @@ const ExerciseSection: React.FC<ExerciseSectionProps> = ({
                 >
                   <Icon
                     icon="material-symbols:schedule"
-                    className="text-gray-400 mr-2 text-sm"
+                    className="text-xl text-gray-400 mr-2"
                   />
                   <span className="text-white font-bold text-sm flex-grow text-left">
                     {startTime}

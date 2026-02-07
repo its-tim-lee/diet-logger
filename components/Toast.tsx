@@ -29,7 +29,7 @@ const Toast: React.FC<ToastProps> = ({ message, onClose }) => {
       }`}
     >
       <div className="bg-[#1f2e18] border border-primary/30 text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2">
-        <Icon icon="material-symbols:check-circle" className="text-primary" />
+        <Icon icon="material-symbols:check-circle" className="text-primary text-xl" />
         <span className="font-medium text-sm">{message}</span>
       </div>
     </div>

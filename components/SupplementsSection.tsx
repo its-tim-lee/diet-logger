@@ -52,7 +52,7 @@ const SupplementsSection: React.FC<SupplementsSectionProps> = ({
         >
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-full bg-primary/20 text-primary">
-              <Icon icon="material-symbols:medication" />
+              <Icon icon="material-symbols:medication" className="text-2xl" />
             </div>
             <h3 className="text-lg font-bold">Supplements</h3>
           </div>
@@ -79,7 +79,7 @@ const SupplementsSection: React.FC<SupplementsSectionProps> = ({
             >
               <Icon
                 icon="material-symbols:expand-more"
-                className={`text-xl transition-transform duration-200 motion-reduce:transition-none ${
+                className={`text-2xl transition-transform duration-200 motion-reduce:transition-none ${
                   isExpanded ? "" : "-rotate-90"
                 }`}
               />
@@ -133,7 +133,7 @@ const SupplementsSection: React.FC<SupplementsSectionProps> = ({
                 onClick={() => removeSupplement(supp.id)}
                 className="h-10 w-10 flex-shrink-0 flex items-center justify-center text-gray-500 hover:text-red-500 transition-colors"
               >
-                <Icon icon="material-symbols:delete" />
+                <Icon icon="material-symbols:delete" className="text-lg" />
               </button>
             </div>
           ))}

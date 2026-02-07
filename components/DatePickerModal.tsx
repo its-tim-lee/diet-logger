@@ -81,7 +81,7 @@ const DatePickerModal: React.FC<DatePickerModalProps> = ({
             onClick={() => changeMonth(-1)}
             className="p-2 hover:bg-white/10 rounded-full"
           >
-            <Icon icon="material-symbols:chevron-left" />
+            <Icon icon="material-symbols:chevron-left" className="text-xl" />
           </button>
           <h3 className="text-lg font-bold">
             {currentMonth.toLocaleDateString("en-US", {
@@ -93,7 +93,7 @@ const DatePickerModal: React.FC<DatePickerModalProps> = ({
             onClick={() => changeMonth(1)}
             className="p-2 hover:bg-white/10 rounded-full"
           >
-            <Icon icon="material-symbols:chevron-right" />
+            <Icon icon="material-symbols:chevron-right" className="text-xl" />
           </button>
         </div>
 
